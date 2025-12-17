@@ -18,6 +18,6 @@ Route::get('/sapa/{nama?}', function ($nama = 'semua') {
     // ↑ "$nama" = Variable interpolation (masukkan nilai $nama ke string)
 });
 
-Route::get('/produk/{id}', function ($id) {
-    return "Detail produk #$id";
-})->name('produk.detail');
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
