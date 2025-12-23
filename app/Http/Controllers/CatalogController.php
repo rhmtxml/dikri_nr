@@ -92,6 +92,10 @@ class CatalogController extends Controller
             ->orderBy('name')
             ->get();
 
+            $priceRange = Product::available()
+            ->selectRaw('MIN(price) as min, MAX(price) as max')
+            ->first();
+
         return view('catalog.index', compact('products', 'categories'));
     }
 
