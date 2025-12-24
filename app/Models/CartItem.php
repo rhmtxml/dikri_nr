@@ -13,6 +13,14 @@ class CartItem extends Model
         'quantity'
     ];
 
+    protected $appends = [
+        'subtotal_price'
+    ];
+    public function getSubtotalAttribute(): float
+    {
+        return $this->quantity * $this->product->price;
+    }
+
     public function cart(): BelongsTo
     {
         return $this->belongsTo(Cart::class);
