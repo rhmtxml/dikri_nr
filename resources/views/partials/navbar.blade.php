@@ -6,10 +6,11 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
     <div class="container">
         {{-- Logo & Brand --}}
-        <a class="navbar-brand text-primary" href="{{ route('home') }}">
-            <i class="bi bi-bag-heart-fill me-2"></i>
-            TokoOnline
-        </a>
+<a class="navbar-brand fw-bold" href="{{ route('home') }}">
+    <i class="bi bi-basket-fill me-2 text-primary"></i>
+    <span class="text-primary">TokoSnack</span>
+</a>
+
 
         {{-- Mobile Toggle --}}
         <button class="navbar-toggler" type="button"

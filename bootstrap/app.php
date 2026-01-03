@@ -16,6 +16,17 @@ return Application::configure(basePath: dirname(__DIR__))
             // ↑ 'admin' adalah nama alias
             // ↑ AdminMiddleware::class adalah class yang dijalankan
         ]);
+        
+        // ==========================================================
+        // BYPASS CSRF FOR WEBHOOKS
+        // ==========================================================
+        // Midtrans mengirim POST request dari luar aplikasi kita.
+        // Mereka tidak tahu CSRF Token kita. Jadi URL ini harus
+        // dikecualikan dari proteksi CSRF.
+        $middleware->validateCsrfTokens(except: [
+            'midtrans/notification', // Endpoint webhook kita
+            'midtrans/*',            // Wildcard (jika ada route lain)
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
