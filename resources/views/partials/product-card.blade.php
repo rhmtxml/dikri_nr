@@ -17,7 +17,7 @@
         @if($product->has_discount)
             <span class="badge-discount">
                 -{{ $product->discount_percentage }}%
-            </span>
+            </span> 
         @endif
 
         {{-- Wishlist Button --}}
