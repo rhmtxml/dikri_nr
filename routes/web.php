@@ -175,6 +175,9 @@ Route::middleware(['auth', 'admin'])
         // ↑ Nama lengkap route: admin.dashboard
         // ↑ URL: /admin/dashboard
 
+        Route::patch('/orders/{order}/status', [OrderController::class, 'updateStatus'])
+            ->name('orders.update-status');
+
         // CRUD Produk: /admin/products, /admin/products/create, dll
         Route::resource('/products', AdminProductController::class);
         // ↑ resource() membuat 7 route sekaligus:

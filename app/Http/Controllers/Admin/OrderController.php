@@ -71,6 +71,8 @@ class OrderController extends Controller
         // Update status di database
         $order->update(['status' => $newStatus]);
 
-        return back()->with('success', "Status pesanan diperbarui menjadi $newStatus");
+    return redirect()
+        ->route('admin.orders.show', $order)
+        ->with('success', 'Status order berhasil diperbarui');
     }
 }
