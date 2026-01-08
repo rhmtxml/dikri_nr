@@ -175,9 +175,6 @@ Route::middleware(['auth', 'admin'])
         // ↑ Nama lengkap route: admin.dashboard
         // ↑ URL: /admin/dashboard
 
-        Route::patch('/orders/{order}/status', [OrderController::class, 'updateStatus'])
-            ->name('orders.update-status');
-
         // CRUD Produk: /admin/products, /admin/products/create, dll
         Route::resource('/products', AdminProductController::class);
         // ↑ resource() membuat 7 route sekaligus:
@@ -257,4 +254,4 @@ Route::middleware('auth')->group(function () {
 Auth::routes();
 
 // Batasi 5 request per menit
-// Route::post('/login', [LoginController::class, 'login'])->middleware('throttle:5,1');    
+Route::post('/login', [LoginController::class, 'login'])->middleware('throttle:5,1');
