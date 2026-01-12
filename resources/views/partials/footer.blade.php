@@ -84,7 +84,7 @@
                 <ul class="list-unstyled">
                     <li class="mb-2"><a href="{{ route('home') }}">Beranda</a></li>
                     <li class="mb-2"><a href="{{ route('catalog.index') }}">Katalog</a></li>
-                    <li class="mb-2"><a href="#">Promo</a></li>
+                    <li class="mb-2"><a href="{{ route('catalog.index', ['on_sale' => 1]) }}">Promo</a></li>
                 </ul>
             </div>
 
@@ -112,7 +112,7 @@
                     </li>
                     <li class="mb-2">
                         <i class="bi bi-whatsapp me-2"></i>
-                        08xxxxxxxx
+                        082295374903
                     </li>
                 </ul>
             </div>

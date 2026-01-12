@@ -41,27 +41,47 @@ class PaymentController extends Controller
 
     public function success(Order $order)
     {
-        // pastikan hanya pemilik order
+        // Cek apakah ini memang milik user yang login
         if ($order->user_id !== auth()->id()) {
             abort(403);
         }
-
-        // jangan update ulang kalau sudah paid
-        if ($order->payment_status !== 'paid') {
+        // UPDATE STATUS MANUAL (Sambil nunggu materi Webhook)
+        if ($order->status === 'pending') {
             $order->update([
-                'payment_status' => 'paid',
-                'paid_at' => now(),
+                'status' => 'processing',
+                'payment_status' => 'paid'
             ]);
         }
 
-        return view('orders.success', compact('order'));
+    return redirect()->route('orders.show', $order)->with('success', 'Pembayaran berhasil diproses!');
     }
 
     public function pending(Order $order)
     {
-        // Optional: pastikan order milik user
-        abort_if($order->user_id !== auth()->id(), 403);
+        // Cek apakah ini memang milik user yang login
+        if ($order->user_id !== auth()->id()) {
+            abort(403);
+        }
 
-        return view('orders.pending', compact('order'));
+        return redirect()->route('orders.show', $order)->with('warning', 'Pembayaran masih dalam status pending.');
+    }
+
+    public function show(Order $order)
+    {
+        // Cek apakah ini memang milik user yang login
+        if ($order->user_id !== auth()->id()) {
+            abort(403);
+        }
+
+        return view('orders.show', compact('order'));
+    }
+
+    public function handle(Request $request)
+    {
+        // Coba log dulu untuk ngetes apakah data masuk
+        \Log::info('Data Midtrans Masuk!', $request->all());
+        
+        // Logika update status kamu di sini...
+        return response()->json(['status' => 'success']);
     }
 }

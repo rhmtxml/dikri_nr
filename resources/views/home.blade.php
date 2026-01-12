@@ -11,6 +11,79 @@
 @section('content')
 
 <style>
+
+/* ================= PROMO ================= */
+.promo-section {
+    background: linear-gradient(
+        180deg,
+        #eaf2ff 0%,
+        #f5f9ff 60%,
+        var(--blue-bg) 100%
+    );
+    position: relative;
+}
+
+
+.promo-card {
+    height: 100%;
+    border-radius: ;
+    padding: 2.5rem;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    transition: .4s ease;
+    box-shadow: 0 15px 40px rgba(13,110,253,.25);
+}
+
+.promo-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top right, rgba(255,255,255,.25), transparent 60%);
+}
+
+.promo-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 25px 60px rgba(13,110,253,.45);
+}
+
+/* Flash Sale */
+.promo-sale {
+    background: linear-gradient(135deg, #0a58ca, #0d6efd, #3b82f6);
+}
+
+/* Member */
+.promo-member {
+    background: linear-gradient(135deg, #2563eb, #3b82f6, #60a5fa);
+}
+
+/* Content */
+.promo-content {
+    position: relative;
+    z-index: 2;
+}
+
+.promo-content h3 {
+    font-weight: 800;
+    margin-bottom: .5rem;
+}
+
+.promo-content p {
+    opacity: .95;
+    margin-bottom: 1.5rem;
+}
+
+/* Badge */
+.promo-badge {
+    display: inline-block;
+    background: #fff;
+    color: #0d6efd;
+    font-weight: 700;
+    padding: .35rem .9rem;
+    border-radius: 999px;
+    margin-bottom: 1rem;
+}
+
 html, body {
     background: #0d6efd; /* sama dengan navbar */
     margin: 0;
@@ -177,6 +250,44 @@ html, body {
     </div>
 </section>
 
+
+{{-- ================= PROMO ================= --}}
+<section id="promo" class="promo-section py-5">
+    <div class="container">
+        <div class="row g-4">
+
+            <div class="col-md-6">
+                <div class="promo-card promo-sale">
+                    <div class="promo-content">
+                        <span class="promo-badge">🔥 Flash Sale</span>
+                        <h3>Diskon Besar Hari Ini</h3>
+                        <p>Potongan hingga <strong>50%</strong> produk pilihan.</p>
+                        <a href="{{ route('catalog.index', ['on_sale' => 1]) }}"
+   class="btn btn-light fw-semibold">
+    Lihat Promo
+</a>
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="promo-card promo-member">
+                    <div class="promo-content">
+                        <span class="promo-badge">🎁 Member Baru</span>
+                        <h3>Bonus Spesial</h3>
+                        <p>Voucher <strong>Rp 50.000</strong> untuk pembelian pertama.</p>
+                        <a href="{{ route('register') }}" class="btn btn-light">
+                            Daftar Sekarang
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
 {{-- ================= PRODUK TERBARU ================= --}}
 <section class="py-5 section-kategori">
     <div class="container">

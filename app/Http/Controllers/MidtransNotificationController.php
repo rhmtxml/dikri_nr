@@ -180,6 +180,7 @@ class MidtransNotificationController extends Controller
             ]);
         }
 
+        $order->load('user');
         // Trigger event untuk kirim email konfirmasi pembayaran
         event(new OrderPaidEvent($order));
     }

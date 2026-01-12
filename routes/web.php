@@ -17,6 +17,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\WishlistController;
+use App\Http\Controllers\Auth\LoginController;
 
 use App\Http\Controllers\Auth\GoogleController;
 
@@ -93,6 +94,9 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
     // Dashboard
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+
+    Route::patch('/orders/{order}/status', [OrderController::class, 'updateStatus'])
+            ->name('orders.update-status');
 
     // Produk CRUD
     Route::resource('products', AdminProductController::class);

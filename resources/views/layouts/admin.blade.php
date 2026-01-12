@@ -16,26 +16,108 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <style>
-        .sidebar {
-            min-height: 100vh;
-            background: linear-gradient(180deg, #1e3a5f 0%, #0f172a 100%);
-        }
-        .sidebar .nav-link {
-            color: rgba(255,255,255,0.7);
-            padding: 12px 20px;
-            border-radius: 8px;
-            margin: 4px 12px;
-            transition: all 0.2s;
-        }
-        .sidebar .nav-link:hover,
-        .sidebar .nav-link.active {
-            background: rgba(255,255,255,0.1);
-            color: #fff;
-        }
-        .sidebar .nav-link i {
-            width: 24px;
-        }
-    </style>
+    body {
+        font-family: 'Inter', sans-serif;
+        background-color: #f8fafc;
+    }
+
+    /* Sidebar – Sky to Ocean Gradient */
+    .sidebar {
+        min-height: 100vh;
+        background: linear-gradient(180deg, #38bdf8 0%, #0ea5e9 50%, #0284c7 100%);
+    }
+
+    .sidebar .nav-link {
+        color: rgba(255,255,255,0.9);
+        padding: 12px 20px;
+        border-radius: 12px;
+        margin: 4px 12px;
+        transition: all 0.25s ease;
+        display: flex;
+        align-items: center;
+        font-weight: 500;
+    }
+
+    .sidebar .nav-link:hover {
+        background: rgba(255,255,255,0.18);
+        color: #ffffff;
+        transform: translateX(4px);
+    }
+
+    .sidebar .nav-link.active {
+        background: #ffffff;
+        color: #0284c7;
+        font-weight: 600;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    .sidebar .nav-link.active i {
+        color: #0284c7;
+    }
+
+    .sidebar .nav-link i {
+        width: 24px;
+        font-size: 1.1rem;
+    }
+
+    /* Section Label */
+    .sidebar .nav-link.text-uppercase {
+        background: transparent !important;
+        color: rgba(255,255,255,0.7) !important;
+        font-size: 0.7rem;
+        letter-spacing: 1px;
+        cursor: default;
+        padding-left: 24px;
+    }
+
+    /* Top Bar */
+    header {
+        background: #ffffff;
+        border-bottom: 1px solid #e2e8f0;
+    }
+
+    header h4 {
+        color: #0284c7;
+        font-weight: 600;
+    }
+
+    /* Cards */
+    .card {
+        border-radius: 16px;
+        border: none;
+    }
+
+    .card-header {
+        border-bottom: 1px solid #e5e7eb;
+    }
+
+    /* Buttons */
+    .btn-primary {
+        background-color: #0ea5e9;
+        border-color: #0ea5e9;
+    }
+
+    .btn-primary:hover {
+        background-color: #0284c7;
+        border-color: #0284c7;
+    }
+
+    .btn-outline-secondary {
+        border-color: #0ea5e9;
+        color: #0ea5e9;
+    }
+
+    .btn-outline-secondary:hover {
+        background-color: #2ab4f4ff;
+        color: #ffffff;
+    }
+
+    /* Avatar */
+    img.rounded-circle {
+        border: 2px solid rgba(255,255,255,0.6);
+    }
+</style>
+
     @stack('styles')
 </head>
 <body class="bg-light">
