@@ -71,11 +71,7 @@
                     Jajanan favorit siswa, harga pelajar, belanja makin gampang.
                 </p>
 
-                <div class="d-flex gap-2 mt-3">
-                    <a href="#" class="social-icon"><i class="bi bi-instagram"></i></a>
-                    <a href="#" class="social-icon"><i class="bi bi-tiktok"></i></a>
-                    <a href="#" class="social-icon"><i class="bi bi-whatsapp"></i></a>
-                </div>
+                
             </div>
 
             {{-- MENU --}}

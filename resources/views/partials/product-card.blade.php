@@ -17,14 +17,7 @@
         @endif
 
         {{-- Wishlist Button --}}
-        @auth
-        <button onclick="toggleWishlist({{ $product->id }})"
-                class="position-absolute top-0 end-0 m-2 btn btn-light btn-sm rounded-circle shadow-sm wishlist-btn-{{ $product->id }}">
-            <i class="bi {{ Auth::check() && Auth::user()->hasInWishlist($product)
-                ? 'bi-heart-fill text-danger'
-                : 'bi-heart text-secondary' }} fs-6"></i>
-        </button>
-        @endauth
+        
     </div>
 
     {{-- Card Body --}}

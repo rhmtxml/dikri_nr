@@ -11,6 +11,87 @@
 @section('content')
 
 <style>
+
+/* ================= PREMIUM PAGE ANIMATION ================= */
+
+/* easing profesional */
+:root {
+    --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* animasi utama */
+@keyframes smoothReveal {
+    from {
+        opacity: 0;
+        transform: translateY(32px) scale(.96);
+        filter: blur(4px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+/* ================= HERO ================= */
+.hero-kantin .col-lg-6 {
+    opacity: 0;
+    animation: smoothReveal 1.1s var(--ease-smooth) forwards;
+}
+
+.hero-kantin .col-lg-6:first-child {
+    animation-delay: .2s;
+}
+
+.hero-kantin .col-lg-6:last-child {
+    animation-delay: .4s;
+}
+
+/* ================= CONTENT WRAPPER ================= */
+.content-wrapper > section {
+    opacity: 0;
+    animation: smoothReveal 1s var(--ease-smooth) forwards;
+}
+
+.content-wrapper > section:nth-child(1) { animation-delay: .25s; }
+.content-wrapper > section:nth-child(2) { animation-delay: .45s; }
+.content-wrapper > section:nth-child(3) { animation-delay: .65s; }
+.content-wrapper > section:nth-child(4) { animation-delay: .85s; }
+
+/* ================= CARD ANIMATION ================= */
+.category-card,
+.product-card {
+    opacity: 0;
+    animation: smoothReveal .8s var(--ease-smooth) forwards;
+}
+
+/* stagger otomatis grid */
+.category-card:nth-child(1),
+.product-card:nth-child(1) { animation-delay: .1s; }
+.category-card:nth-child(2),
+.product-card:nth-child(2) { animation-delay: .18s; }
+.category-card:nth-child(3),
+.product-card:nth-child(3) { animation-delay: .26s; }
+.category-card:nth-child(4),
+.product-card:nth-child(4) { animation-delay: .34s; }
+.category-card:nth-child(5),
+.product-card:nth-child(5) { animation-delay: .42s; }
+.category-card:nth-child(6),
+.product-card:nth-child(6) { animation-delay: .5s; }
+
+/* ================= HOVER LEBIH HALUS ================= */
+.category-card,
+.product-card,
+.promo-card {
+    transition: transform .6s var(--ease-smooth),
+                box-shadow .6s var(--ease-smooth);
+}
+
+.category-card:hover,
+.product-card:hover {
+    transform: translateY(-12px) scale(1.03);
+}
+
 /* ================= ROOT ================= */
 :root {
     --blue-strong: #0a58ca;
@@ -46,13 +127,14 @@ html, body {
     z-index: 1;
 }
 
+/* LENGKUNGAN BAWAH HERO */
 .hero-kantin::after {
     content: '';
     position: absolute;
-    bottom: -70px;
+    bottom: -80px;
     left: 0;
     width: 100%;
-    height: 140px;
+    height: 160px;
     background: var(--blue-bg);
     border-radius: 100% 100% 0 0;
     z-index: 2;
@@ -75,6 +157,13 @@ html, body {
     100% { transform: translateY(0); }
 }
 
+/* ================= CONTENT WRAPPER (MENYATU) ================= */
+.content-wrapper {
+    background: var(--blue-bg);
+    margin-top: -90px;
+    padding-top: 110px;
+}
+
 /* ================= SECTION TITLE ================= */
 .section-title {
     font-weight: 800;
@@ -92,8 +181,10 @@ html, body {
 }
 
 /* ================= KATEGORI ================= */
-.section-kategori {
-    background: var(--blue-bg);
+.section-kategori,
+.bg-light,
+.promo-section {
+    background: transparent !important;
 }
 
 .category-card {
@@ -127,55 +218,33 @@ html, body {
 }
 
 /* ================= PROMO ================= */
-.promo-section {
-    background: linear-gradient(
-        180deg,
-        #eaf2ff 0%,
-        #f5f9ff 60%,
-        var(--blue-bg) 100%
-    );
-}
-
 .promo-card {
-    height: 100%;
     padding: 2.5rem;
     border-radius: 20px;
     color: #fff;
     position: relative;
     overflow: hidden;
-    transition: .4s ease;
     box-shadow: 0 15px 40px rgba(13,110,253,.25);
 }
 
-.promo-card::before {
+.promo-sale {
+    background: url('/images/banner-promo-snack.jpg') center / cover no-repeat;
+}
+
+.promo-sale::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at top right, rgba(255,255,255,.25), transparent 60%);
-}
-
-.promo-card:hover {
-    transform: translateY(-10px) scale(1.02);
-    box-shadow: 0 25px 60px rgba(13,110,253,.45);
-}
-
-.promo-sale {
-    background: linear-gradient(135deg, #0a58ca, #0d6efd, #3b82f6);
+    background: linear-gradient(
+        135deg,
+        rgba(10,88,202,.75),
+        rgba(13,110,253,.75)
+    );
 }
 
 .promo-content {
     position: relative;
     z-index: 2;
-}
-
-.promo-content h3 {
-    font-weight: 800;
-    margin-bottom: .5rem;
-}
-
-.promo-content p {
-    opacity: .95;
-    margin-bottom: 1.5rem;
 }
 
 .promo-badge {
@@ -197,10 +266,6 @@ html, body {
 .btn-outline-primary {
     border: 2px solid #0d6efd;
     font-weight: 600;
-}
-
-.bg-light {
-    background: var(--blue-bg) !important;
 }
 </style>
 
@@ -225,78 +290,78 @@ html, body {
     </div>
 </section>
 
-{{-- ================= KATEGORI ================= --}}
-<section class="py-5 section-kategori">
-    <div class="container text-center">
-        <h2 class="section-title mb-5">Kategori Snack Sekolah</h2>
+{{-- ================= SEMUA MENYATU ================= --}}
+<section class="content-wrapper">
 
-        <div class="row g-4 justify-content-center">
-            @foreach($categories as $category)
-                <div class="col-6 col-md-4 col-lg-2">
-                    <a href="{{ route('catalog.index', ['category' => $category->slug]) }}"
-                       class="text-decoration-none text-dark">
-                        <div class="card category-card h-100">
-                            <div class="card-body">
-                                <img src="{{ $category->image_url }}" class="rounded-circle mb-3" width="80" height="80">
-                                <h6 class="fw-semibold mb-1">{{ $category->name }}</h6>
-                                <small class="text-muted">{{ $category->products_count }} produk</small>
+    {{-- KATEGORI --}}
+    <section class="py-5 section-kategori">
+        <div class="container text-center">
+            <h2 class="section-title mb-5">Kategori Snack Sekolah</h2>
+            <div class="row g-4 justify-content-center">
+                @foreach($categories as $category)
+                    <div class="col-6 col-md-4 col-lg-2">
+                        <a href="{{ route('catalog.index', ['category' => $category->slug]) }}" class="text-decoration-none text-dark">
+                            <div class="card category-card h-100">
+                                <div class="card-body">
+                                    <img src="{{ $category->image_url }}" class="rounded-circle mb-3" width="80" height="80">
+                                    <h6 class="fw-semibold">{{ $category->name }}</h6>
+                                    <small class="text-muted">{{ $category->products_count }} produk</small>
+                                </div>
                             </div>
-                        </div>
-                    </a>
-                </div>
-            @endforeach
-        </div>
-    </div>
-</section>
-
-{{-- ================= PRODUK FAVORIT ================= --}}
-<section class="py-5 bg-light">
-    <div class="container">
-        <div class="d-flex justify-content-between mb-4">
-            <h2 class="fw-bold">Produk Favorit</h2>
-            <a href="{{ route('catalog.index') }}" class="btn btn-outline-primary">Lihat Semua</a>
-        </div>
-
-        <div class="row g-4">
-            @foreach($featuredProducts as $product)
-                <div class="col-6 col-md-4 col-lg-3">
-                    @include('partials.product-card', ['product' => $product])
-                </div>
-            @endforeach
-        </div>
-    </div>
-</section>
-
-{{-- ================= PROMO ================= --}}
-<section id="promo" class="promo-section py-5">
-    <div class="container">
-        <div class="promo-card promo-sale">
-            <div class="promo-content">
-                <span class="promo-badge">🔥 Flash Sale</span>
-                <h3>Diskon Besar Hari Ini</h3>
-                <p>Segera klaim diskon sebelum masa promo habis</p>
-                <a href="{{ route('catalog.index', ['on_sale' => 1]) }}"
-                   class="btn btn-light fw-semibold">
-                    Lihat Promo
-                </a>
+                        </a>
+                    </div>
+                @endforeach
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-{{-- ================= PRODUK TERBARU ================= --}}
-<section class="py-5 section-kategori">
-    <div class="container">
-        <h2 class="text-center section-title mb-4">Produk Terbaru</h2>
-
-        <div class="row g-4">
-            @foreach($latestProducts as $product)
-                <div class="col-6 col-md-4 col-lg-3">
-                    @include('partials.product-card', ['product' => $product])
-                </div>
-            @endforeach
+    {{-- PRODUK FAVORIT --}}
+    <section class="py-5">
+        <div class="container">
+            <div class="d-flex justify-content-between mb-4">
+                <h2 class="fw-bold">Produk Favorit</h2>
+                <a href="{{ route('catalog.index') }}" class="btn btn-outline-primary">Lihat Semua</a>
+            </div>
+            <div class="row g-4">
+                @foreach($featuredProducts as $product)
+                    <div class="col-6 col-md-4 col-lg-3">
+                        @include('partials.product-card', ['product' => $product])
+                    </div>
+                @endforeach
+            </div>
         </div>
-    </div>
+    </section>
+
+    {{-- PROMO --}}
+    <section class="py-5">
+        <div class="container">
+            <div class="promo-card promo-sale text-center">
+                <div class="promo-content">
+                    <span class="promo-badge">🎉 Promo Kantin</span>
+                    <h3 class="display-6 fw-bold">Diskon Snack Sekolah</h3>
+                    <p>Hemat jajan favoritmu hari ini!</p>
+                    <a href="{{ route('catalog.index', ['on_sale' => 1]) }}" class="btn btn-light fw-semibold">
+                        Lihat Promo
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {{-- PRODUK TERBARU --}}
+    <section class="py-5 section-kategori">
+        <div class="container">
+            <h2 class="text-center section-title mb-4">Produk Terbaru</h2>
+            <div class="row g-4">
+                @foreach($latestProducts as $product)
+                    <div class="col-6 col-md-4 col-lg-3">
+                        @include('partials.product-card', ['product' => $product])
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+
 </section>
 
 @endsection

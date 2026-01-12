@@ -127,8 +127,7 @@
             {{-- Brand --}}
             <div class="p-3 border-bottom border-secondary">
                 <a href="{{ route('admin.dashboard') }}" class="text-white text-decoration-none d-flex align-items-center">
-                    <i class="bi bi-shop fs-4 me-2"></i>
-                    <span class="fs-5 fw-bold">Admin Panel</span>
+                    <img src="{{ asset('images/hero-snack1.png') }}" class="img-fluid" style="height:220px; width:auto;">
                 </a>
             </div>
 
