@@ -1,8 +1,8 @@
-{{-- ================================================
- FILE: resources/views/home.blade.php
- FUNGSI: Halaman utama website
- TEMA: Kantin Sekolah Kekinian (Biru Dominan)
-================================================ --}}
+{{-- =====================================================
+ FILE   : resources/views/home.blade.php
+ FUNGSI : Halaman utama website
+ TEMA   : Kantin Sekolah Kekinian (Biru Dominan)
+===================================================== --}}
 
 @extends('layouts.app')
 
@@ -11,6 +11,120 @@
 @section('content')
 
 <style>
+/* ================= ROOT ================= */
+:root {
+    --blue-strong: #0a58ca;
+    --blue-main: #0d6efd;
+    --blue-glow: #3b82f6;
+    --blue-soft: #dbeafe;
+    --blue-bg: #eaf2ff;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    background: #0d6efd;
+}
+
+/* ================= HERO ================= */
+.hero-kantin {
+    position: relative;
+    overflow: hidden;
+    background: url('/images/banner-snack.jpg') center / cover no-repeat;
+}
+
+.hero-kantin::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(10,88,202,.85),
+        rgba(13,110,253,.85),
+        rgba(59,130,246,.85)
+    );
+    z-index: 1;
+}
+
+.hero-kantin::after {
+    content: '';
+    position: absolute;
+    bottom: -70px;
+    left: 0;
+    width: 100%;
+    height: 140px;
+    background: var(--blue-bg);
+    border-radius: 100% 100% 0 0;
+    z-index: 2;
+}
+
+.hero-kantin .container {
+    position: relative;
+    z-index: 3;
+}
+
+.hero-kantin img {
+    max-height: 380px;
+    animation: floatHero 4s ease-in-out infinite;
+    filter: drop-shadow(0 20px 35px rgba(0,0,0,.25));
+}
+
+@keyframes floatHero {
+    0%   { transform: translateY(0); }
+    50%  { transform: translateY(-20px); }
+    100% { transform: translateY(0); }
+}
+
+/* ================= SECTION TITLE ================= */
+.section-title {
+    font-weight: 800;
+    color: var(--blue-strong);
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 70%;
+    height: 5px;
+    margin: 10px auto 0;
+    background: linear-gradient(to right, #0a58ca, #3b82f6);
+    border-radius: 20px;
+}
+
+/* ================= KATEGORI ================= */
+.section-kategori {
+    background: var(--blue-bg);
+}
+
+.category-card {
+    border: none;
+    border-radius: 1.75rem;
+    background: linear-gradient(160deg, #dbeafe, #ffffff);
+    transition: .35s ease;
+}
+
+.category-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 18px 40px rgba(13,110,253,.35);
+}
+
+.category-card img {
+    background: #fff;
+    padding: 10px;
+    border: 3px solid var(--blue-main);
+}
+
+/* ================= PRODUK ================= */
+.product-card {
+    border-radius: 1.75rem;
+    background: linear-gradient(180deg, #ffffff, #f1f7ff);
+    transition: .35s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 45px rgba(13,110,253,.35);
+}
 
 /* ================= PROMO ================= */
 .promo-section {
@@ -20,14 +134,12 @@
         #f5f9ff 60%,
         var(--blue-bg) 100%
     );
-    position: relative;
 }
-
 
 .promo-card {
     height: 100%;
-    border-radius: ;
     padding: 2.5rem;
+    border-radius: 20px;
     color: #fff;
     position: relative;
     overflow: hidden;
@@ -47,17 +159,10 @@
     box-shadow: 0 25px 60px rgba(13,110,253,.45);
 }
 
-/* Flash Sale */
 .promo-sale {
     background: linear-gradient(135deg, #0a58ca, #0d6efd, #3b82f6);
 }
 
-/* Member */
-.promo-member {
-    background: linear-gradient(135deg, #2563eb, #3b82f6, #60a5fa);
-}
-
-/* Content */
 .promo-content {
     position: relative;
     z-index: 2;
@@ -73,7 +178,6 @@
     margin-bottom: 1.5rem;
 }
 
-/* Badge */
 .promo-badge {
     display: inline-block;
     background: #fff;
@@ -84,98 +188,19 @@
     margin-bottom: 1rem;
 }
 
-html, body {
-    background: #0d6efd; /* sama dengan navbar */
-    margin: 0;
-    padding: 0;
-}
-
-:root {
-    --blue-strong: #0a58ca;
-    --blue-main: #0d6efd;
-    --blue-glow: #3b82f6;
-    --blue-soft: #dbeafe;
-    --blue-bg: #eaf2ff;
-}
-
-/* ================= HERO ================= */
-.hero-kantin {
-    background: linear-gradient(135deg, #0a58ca, #0d6efd, #3b82f6);
-    position: relative;
-    overflow: hidden;
-}
-.hero-kantin::after {
-    content: '';
-    position: absolute;
-    bottom: -70px;
-    left: 0;
-    width: 100%;
-    height: 140px;
-    background: var(--blue-bg);
-    border-radius: 100% 100% 0 0;
-}
-
-/* ================= SECTION TITLE ================= */
-.section-title {
-    font-weight: 800;
-    color: var(--blue-strong);
-}
-.section-title::after {
-    content: '';
-    display: block;
-    width: 70%;
-    height: 5px;
-    background: linear-gradient(to right, #0a58ca, #3b82f6);
-    margin: 10px auto 0;
-    border-radius: 20px;
-}
-
-/* ================= KATEGORI ================= */
-.section-kategori {
-    background: var(--blue-bg);
-}
-
-.category-card {
-    border: none;
-    border-radius: 1.75rem;
-    background: linear-gradient(160deg, #dbeafe, #ffffff);
-    transition: .35s;
-}
-.category-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 18px 40px rgba(13,110,253,.35);
-}
-
-.category-card img {
-    background: #fff;
-    padding: 10px;
-    border: 3px solid var(--blue-main);
-}
-
-/* ================= PRODUK ================= */
-.product-card {
-    border-radius: 1.75rem;
-    background: linear-gradient(180deg, #ffffff, #f1f7ff);
-    transition: .35s;
-}
-.product-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 45px rgba(13,110,253,.35);
-}
-
-/* ================= SECTION BG ================= */
-.bg-light {
-    background: var(--blue-bg) !important;
-}
-
 /* ================= BUTTON ================= */
 .btn-primary {
     background: linear-gradient(to right, #0a58ca, #0d6efd);
     border: none;
 }
+
 .btn-outline-primary {
     border: 2px solid #0d6efd;
     font-weight: 600;
+}
+
+.bg-light {
+    background: var(--blue-bg) !important;
 }
 </style>
 
@@ -184,9 +209,7 @@ html, body {
     <div class="container">
         <div class="row align-items-center min-vh-50">
             <div class="col-lg-6">
-                <h1 class="display-4 fw-bold mb-3">
-                    Jajan Online Kantin Sekolah
-                </h1>
+                <h1 class="display-4 fw-bold mb-3">Jajan Online Kantin Sekolah</h1>
                 <p class="lead mb-4">
                     Snack favorit siswa • Harga ramah • Praktis & cepat 🍟🥤
                 </p>
@@ -196,9 +219,7 @@ html, body {
             </div>
 
             <div class="col-lg-6 d-none d-lg-block text-center">
-                <img src="{{ asset('images/hero-snack.png') }}"
-                     class="img-fluid"
-                     style="max-height: 380px;">
+                <img src="{{ asset('images/hero-snack.png') }}" class="img-fluid">
             </div>
         </div>
     </div>
@@ -216,9 +237,7 @@ html, body {
                        class="text-decoration-none text-dark">
                         <div class="card category-card h-100">
                             <div class="card-body">
-                                <img src="{{ $category->image_url }}"
-                                     class="rounded-circle mb-3"
-                                     width="80" height="80">
+                                <img src="{{ $category->image_url }}" class="rounded-circle mb-3" width="80" height="80">
                                 <h6 class="fw-semibold mb-1">{{ $category->name }}</h6>
                                 <small class="text-muted">{{ $category->products_count }} produk</small>
                             </div>
@@ -230,14 +249,12 @@ html, body {
     </div>
 </section>
 
-{{-- ================= PRODUK UNGGULAN ================= --}}
+{{-- ================= PRODUK FAVORIT ================= --}}
 <section class="py-5 bg-light">
     <div class="container">
         <div class="d-flex justify-content-between mb-4">
             <h2 class="fw-bold">Produk Favorit</h2>
-            <a href="{{ route('catalog.index') }}" class="btn btn-outline-primary">
-                Lihat Semua
-            </a>
+            <a href="{{ route('catalog.index') }}" class="btn btn-outline-primary">Lihat Semua</a>
         </div>
 
         <div class="row g-4">
@@ -250,44 +267,23 @@ html, body {
     </div>
 </section>
 
-
 {{-- ================= PROMO ================= --}}
 <section id="promo" class="promo-section py-5">
     <div class="container">
-        <div class="row g-4">
-
-            <div class="col-md-6">
-                <div class="promo-card promo-sale">
-                    <div class="promo-content">
-                        <span class="promo-badge">🔥 Flash Sale</span>
-                        <h3>Diskon Besar Hari Ini</h3>
-                        <p>Potongan hingga <strong>50%</strong> produk pilihan.</p>
-                        <a href="{{ route('catalog.index', ['on_sale' => 1]) }}"
-   class="btn btn-light fw-semibold">
-    Lihat Promo
-</a>
-
-
-                    </div>
-                </div>
+        <div class="promo-card promo-sale">
+            <div class="promo-content">
+                <span class="promo-badge">🔥 Flash Sale</span>
+                <h3>Diskon Besar Hari Ini</h3>
+                <p>Segera klaim diskon sebelum masa promo habis</p>
+                <a href="{{ route('catalog.index', ['on_sale' => 1]) }}"
+                   class="btn btn-light fw-semibold">
+                    Lihat Promo
+                </a>
             </div>
-
-            <div class="col-md-6">
-                <div class="promo-card promo-member">
-                    <div class="promo-content">
-                        <span class="promo-badge">🎁 Member Baru</span>
-                        <h3>Bonus Spesial</h3>
-                        <p>Voucher <strong>Rp 50.000</strong> untuk pembelian pertama.</p>
-                        <a href="{{ route('register') }}" class="btn btn-light">
-                            Daftar Sekarang
-                        </a>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </div>
 </section>
+
 {{-- ================= PRODUK TERBARU ================= --}}
 <section class="py-5 section-kategori">
     <div class="container">
