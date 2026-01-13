@@ -45,7 +45,7 @@
 {{-- Table --}}
 <div class="card shadow-sm border-0">
     <div class="table-responsive">
-        <table class="table table-hover align-middle mb-0">
+        <table class="table table-hover align-middle mb-0 display-flex">
             <thead class="table-light">
                 <tr>
                     <th>Gambar</th>
@@ -76,7 +76,7 @@
                             {{ $product->is_active ? 'Aktif' : 'Nonaktif' }}
                         </span>
                     </td>
-                    <td class="text-end pe-4">
+                    <td class="text-end pe-4 ">
                         <a href="{{ route('admin.products.show', $product) }}"
                            class="btn btn-sm btn-outline-info">
                             Detail
@@ -85,6 +85,14 @@
                            class="btn btn-sm btn-outline-warning">
                             Edit
                         </a>
+                        <form action="{{ route('admin.products.destroy', $product) }}" method="POST" class="d-inline">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit"
+                                    class="btn btn-sm btn-outline-danger m-2"
+                                    onclick="return confirm('Yakin ingin menghapus produk ini?')">
+                                Hapus
+                            </button>
                     </td>
                 </tr>
                 @empty
